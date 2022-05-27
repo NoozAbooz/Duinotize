@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+*{
+    margin: 0;
+}
+body{
+    width: 100%;
+    background-color: #202225;
+    font-family: "Poppins";
+    color: #ffffff;
+    /*overflow-x: hidden;*/
+}
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
+a:hover{
+    color: #66ddcc;
+}
+#wallpaper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#main-container{
+    width: 100vw;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding-left: 12%;
+    padding-right: 12%;
+    box-sizing: border-box;
+    background-color: transparent;
+    z-index: 2;
+}
+#bar{
+    list-style: none;
+    text-align: right;
+}
+#nav-logo{
+    transition: 0.3s ease;
+    margin-left: calc(6vh*-1);
+    margin-top: -6%;
+    width: 18vw;
+    height: 12vh;
+    background-image: url("icons/sus.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: scaleY(-1);
+    display: inline-block;
+}
+#nav-logo:hover{
+    margin-top: 0;
+}
+#bar li:first-child{
+    float: left; 
+    padding: 0;
+}
+#bar li {
+    padding-top: calc(6vh - 18px);
+    display: inline-block;
+    padding-left: 3%;
+    font-size: 18px;
+}
+.now{
+    color: #66ddcc;
+}
+#copyright{
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    padding-bottom: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+    color: #eeeeee;
+    background-color: transparent;
+    z-index: 1;
+}
+::selection{
+    background-color: transparent;
+    color: #66ddcc;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+@media screen and (max-width: 850px) {
+    #bar li{
+        padding-left: 2%;
+        font-size: 14px;
+    }
+    header, #copyright{
+        background-color: rgba(32, 34, 37, 0.5);
+    }
+}
+@media screen and (max-width: 620px) {
+    #wallpaper{
+        background-image: none;
+    }
+    /* #nav-logo{
+        margin-top: 0;
+    } */
+    #bar li{
+        padding-left: 1%;
+        font-size: 12px;
+    }
+}

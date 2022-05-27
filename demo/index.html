@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#66ddcc">
+    <meta name="og:image" itemprop="image" content="https://amogos.studio/icons/sus.png">
+    <link href="common.css" rel="stylesheet" type="text/css">
+    <link href="article.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://mobilegmyt.github.io/Duinotize/duinotize.js"></script>
+    <title>Duinotize Test Page</title>
+    <style>
+        #text-area a{
+            color: #66ddcc;
+        }
+        #text-area a:hover{
+            color: #669999;
+        }
+        #startminer{
+            margin-right: -180px;
+            padding: 12px;
+            outline: none;
+            background-image: linear-gradient(-30deg, #297EFF, #73b9ff);
+            color: #ffffff;
+            font-size: 12px;
+            border: none;
+            border-radius: 18px;
+            font-family: "Poppins";
+            cursor: pointer;
+            box-shadow: 0 3px #999;
+        }
+        #startminer:hover{
+            background-image: linear-gradient(-30deg, #0f6fff, #62aefa);
+        }
+        #startminer:active{
+            background-image: linear-gradient(-30deg, #0f6fff, #62aefa);
+            box-shadow: 0 1px #999;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="text-area">
+            <h1>Duinotize Test Page</h1>
+
+            View the <a href="https://github.com/mobilegmYT/Duinotize/blob/main/demo/index.html" target="_blank" rel="noopener noreferrer">source code</a> for this page.
+            <a href="https://github.com/mobilegmYT/Duinotize" target="_blank" rel="noopener noreferrer">Duinotize</a>, is installed on this page, which will mine 
+            <a href="https://duinocoin.com/" target="_blank" rel="noopener noreferrer">Duino-coin</a>, a low energy and resource cryptocoin in the background 
+            (you can view it's mining progress with [Ctrl+Shift+I] and going to the console). Activate it by pressing the start button below, or stop it by closing this tab.</p>
+            
+            <input onclick="StartMining()" id="startminer" type="button" value="Start Duino Miner"></input>
+            <script>
+              let buttonClicked = false;
+              
+              function updatebutton() {
+                document.getElementById('startminer').value = 'Miner Started';
+                buttonClicked = true;
+              };
+                
+              function StartMining() {
+                var duinoopts = {
+                  username: "rpinews",
+                  rigid: "Duinotize-Demo",
+                  threads: 1,
+                  difficulty: "LOW",
+                  hasher: "DUCO-S1"
+                };
+
+                if (buttonClicked === false) {
+                  Duinotize(duinoopts, updatebutton());
+                };
+              };
+            </script>
+            <br> <br> <br> <br>
+        </div>
+    </div>
+</body>
+</html>
