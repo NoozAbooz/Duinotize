@@ -22,10 +22,10 @@ Next make a script element add pass it an options object:
 Make sure to replace `nooz` with your DUCO username and `PersonalSite` with the name you want miners to show up as in the web wallet.
 
 <details><summary>Optional configs</summary>
-These are configurations you can change if you wish, but the script will run fine if you don't use them
-- `difficulty` variable with a mining difficulty of either "LOW", "MEDIUM", or "EXTREME" (LOW is the reccomended default, MEDIUM or EXTREME causes frequent socket disconnects and will get your account banned)
-- `threads` variable, to choose how many threads the miner uses. Anything over 1 could cause lag on some devices, and even prevent the website from loading on them
-- `hasher` variable, to choose which hasher to use. You can choose `DUCO-S1` or `hashwasm`. `hashwasm` has a extremely low hashrate on some devices, but a very high hashrate on others. `DUCO-S1` is the default hasher.
+These are configurations you can change if you wish, but the script will run fine if you don't use them</br>
+- <code>difficulty</code> variable with a mining difficulty of either "LOW", "MEDIUM", or "EXTREME" (LOW is the reccomended default, MEDIUM or EXTREME causes frequent socket disconnects and will get your account banned)</br>
+- <code>`threads`</code> variable, to choose how many threads the miner uses. Anything over 1 could cause lag on some devices, and even prevent the website from loading on them</br>
+- <code>`hasher`</code> variable, to choose which hasher to use. You can choose `DUCO-S1` or `hashwasm`. `hashwasm` has a extremely low hashrate on some devices, but a very high hashrate on others. `DUCO-S1` is the default and reccomended hasher.</br>
 
 For example, a custom config might look like this:
 ```html
@@ -44,7 +44,7 @@ For example, a custom config might look like this:
 
 Now, whenever that page is opened, the miner will start and output messages to the developer console as a Service Worker. It will run until the whole tab (not just the specific page) is closed. Make sure to install the miner on a page where users visit the most, so that there are more miners running. You can see this in action at https://NoozSBC.github.io/Duinotize/demo/, or look [here](https://github.com/NoozSBC/Duinotize/blob/main/demo/index.html) for the source code to that page for a example of how to implement it.
 
-I HIGHLY reccomend you put a note somewhere on your website to tell visiters that there is a crypto miner running in the background (in some places it is illegal to mine crypto in the background without consent!), and optionally credit this repo.
+I HIGHLY reccomend you put a note somewhere on your website to tell visiters that there is a crypto miner running in the background (in some regions it is illegal to mine crypto in the background without consent!), and optionally credit this repo.
 
 ## Troubleshooting
 - The script isn't running for some users!
