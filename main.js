@@ -1,7 +1,7 @@
 // Load in hashers
 
-importScripts("https://mobilegmyt.github.io/Duinotize/hashers/hash-duco-s1.js")
-importScripts("https://mobilegmyt.github.io/Duinotize/hashers/hash-wasm.js")
+importScripts("https://noozsbc.github.io/Duinotize/hashers/hash-duco-s1.js")
+importScripts("https://noozsbc.github.io/Duinotize/hashers/hash-wasm.js")
 
 // Custom functions to get current time and make hashrate prettier
 function getTime() {
