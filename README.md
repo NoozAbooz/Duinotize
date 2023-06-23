@@ -55,7 +55,7 @@ I HIGHLY reccomend you put a note somewhere on your website to tell visiters tha
 The program runs a wrapper, which parses the input and runs a worker that connects to the Duco server via a websocket, requests a mining job with the configured settings and solves it using either [DUCO-S1](https://github.com/mobilegmYT/Duinotize/blob/main/hashes.js) or [hash-wasm](https://github.com/Daninet/hash-wasm).The miner sends the result, the time it took, username and hashrate to the server which loads it onto your wallet.
 
 ## Credits
-This project is a fork/continuation of https://github.com/VatsaDev/Mineuino as the original author seems to have abandoned it and the code is broken.
+This project is inspired by https://github.com/VatsaDev/Mineuino as the original author seems to have abandoned the repo and the code is broken. The code was rewritten from the ground up to support stability and future compatibility. The DUCO-S1 and hashwasm algorithms are also originally sourced from the DUCO Web Miner.
 Thanks to LDarki from the Duino discord for helping with some of the code.
 
 ## Notes
