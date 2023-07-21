@@ -57,6 +57,7 @@ The program runs a wrapper, which parses the input and runs a worker that connec
 ## Credits
 This project is inspired by https://github.com/VatsaDev/Mineuino as the original author seems to have abandoned the repo and the code is broken. The code was rewritten from the ground up to support stability and future compatibility. The DUCO-S1 and hashwasm algorithms are also originally sourced from the DUCO Web Miner.
 Thanks to LDarki from the Duino discord for helping with some of the code.
+- [oxmc](https://github.com/oxmc) for the main script object rewrite!
 
 ## Notes
 - I made this in just 2 hours at 1AM, so if there are bugs PLEASE report them
