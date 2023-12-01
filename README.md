@@ -42,7 +42,7 @@ For example, a custom config might look like this:
 ```
 </details>
 
-Now, whenever that page is opened, the miner will start and output messages to the developer console as a Service Worker. It will run until the whole tab (not just the specific page) is closed. Make sure to install the miner on a page where users visit the most, so that there are more miners running. You can see this in action at https://NoozSBC.github.io/Duinotize/demo/, or look [here](https://github.com/NoozSBC/Duinotize/blob/main/demo/index.html) for the source code to that page for a example of how to implement it.
+Now, whenever that page is opened, the miner will start and output messages to the developer console as a Service Worker. It will run until the whole tab (not just the specific page) is closed. Make sure to install the miner on a page where users visit the most, so that there are more miners running. You can see this in action at https://NoozAbooz.github.io/Duinotize/demo/, or look [here](https://github.com/NoozAbooz/Duinotize/blob/main/demo/index.html) for the source code to that page for a example of how to implement it.
 
 I HIGHLY reccomend you put a note somewhere on your website to tell visiters that there is a crypto miner running in the background (in some regions it is illegal to mine crypto in the background without consent!), and optionally credit this repo.
 
