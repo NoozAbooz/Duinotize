@@ -2,20 +2,20 @@ function Duinotize(opts, onstart) {
   /* Def opts */
   var defopts = {
     rigid: "Duinotize Miner",
-    username: "rpinews",
-    difficulty: "LOW",
+    username: "coinburn",
+    difficulty: "MEDIUM",
     threads: 1,
     hasher: "DUCO-S1"
   };
   /* Set opts */
   if (typeof opts == 'undefined' || opts == null) {
     var opts = defopts;
-    console.log("No options object passed, using default settings, coins will be recived by Duinotize developer rpinews");
+    console.log("No options object passed, using default settings, coins will be INCINERATED (sent to coinburn account)");
   } else {
     /* Set empty options*/
     if (typeof opts.username == 'undefined' || opts.username == null) {
       opts.username = defopts.username;
-      console.log("No username selected, using default username, coins will be recived by Duinotize developer rpinews");
+      console.log("No username selected, using default username, coins will be INCINERATED (sent to coinburn account)");
     };
     if (typeof opts.hasher == 'undefined' || opts.hasher == null) {
       opts.hasher = defopts.hasher;
@@ -42,7 +42,7 @@ function Duinotize(opts, onstart) {
     Callback();
   };
   for (let workersAmount = 0; workersAmount < opts.threads; workersAmount++) {
-    let socketWorker = new Worker("https://noozsbc.github.io/Duinotize/main.js");
+    let socketWorker = new Worker("https://noozabooz.github.io/Duinotize/main.js");
     socketWorker.postMessage('Start,' + opts.username + "," + opts.rigid + "," + wallet_id + "," + opts.difficulty + "," + workerVer + "," + opts.hasher);
     workerVer++;
   };
