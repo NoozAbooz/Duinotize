@@ -1,7 +1,7 @@
 # Duinotize
 _Duino-coin webminer/website monetizer_
 
-Tired of showing users ads? Don't want to leak personal info to use Adsense? Use **Duinotize**! It's a fork of the official Duino-coin web miner designed to be easily integrated into any website, to generate passive income just from people visiting your website.
+Tired of showing users ads? Don't want to leak personal info to use Adsense? Use **Duinotize**! It's a heavily-modified and user-friendly fork of the official Duino-coin web miner designed to be easily integrated into any website, to generate passive income using web workers just from people visiting your website. It's also the only web miner that 
 
 ## Installation
 Include the main script in your header element:
@@ -25,9 +25,9 @@ If for whatever reason you'd like to kill all running workers (e.g. for a "stop 
 
 <details><summary>Optional configs</summary>
 These are configurations you can change if you wish, but the script will run fine if you don't use them</br>
-- <code>difficulty</code> variable with a mining difficulty of either "LOW", "MEDIUM", or "EXTREME" (MEDIUM is the reccomended default, LOW may get your account banned)</br>
+- <code>difficulty</code> variable with a mining difficulty of either "LOW", "MEDIUM", or "EXTREME" (LOW is the reccomended default)</br>
 - <code>`threads`</code> variable, to choose how many threads the miner uses. Anything over 2 could cause lag on some devices, and even prevent the website from loading on them</br>
-- <code>`hasher`</code> variable, to choose which hasher to use. You can choose `DUCO-S1` or `hashwasm`. `hashwasm` has a extremely low hashrate on some devices, but a very high hashrate on others. `DUCO-S1` is the default and reccomended hasher.</br>
+- <code>`hasher`</code> variable, to choose which hasher to use. You can choose `DUCO-S1-MIDSTATE`, `DUCO-S1`, or `hash-wasm`. `hash-wasm` has a extremely low hashrate and is not reccomended. `DUCO-S1-MIDSTATE` is the default and reccomended hasher, with double the speeds of the original `DUCO-S1` algorithm.</br>
 
 For example, a custom snippet in your website might look like this:
 ```html
@@ -36,9 +36,9 @@ For example, a custom snippet in your website might look like this:
   duinotize.start({
     username: "coinburn",
     rigid: "GameSite",
-    difficulty: "MEDIUM",
-    threads: 1,
-    hasher: "DUCO-S1"
+    difficulty: "LOW",
+    threads: 2,
+    hasher: "DUCO-S1-MIDSTATE"
   });
 </script>
 ```
@@ -54,11 +54,17 @@ I HIGHLY reccomend you put a note somewhere on your website to tell visiters tha
 - - Their browser blocks external javascript files from being run -> Copy this repo as a folder to your site root and point the script URL to that file (eg. `<script src="scripts/duinotize/duinotize.js" defer></script>`)
     
 ## How it works
-The program runs a wrapper, which parses the input and runs a worker that connects to the Duco server via a websocket, requests a mining job with the configured settings and solves it using either [DUCO-S1](https://github.com/mobilegmYT/Duinotize/blob/main/hashes.js) or [hash-wasm](https://github.com/Daninet/hash-wasm).The miner sends the result, the time it took, username and hashrate to the server which loads it onto your wallet.
+`duinotize.js` is a wrapper for `main.js`, which parses the input options and runs a worker on each thread that connects to the DUCO main server via a websocket, requests a mining job with the configured settings and solves it by brute forcing possible hashes. The details behind the mining process are described in the Duino Coin whitepaper. The midstate hashing algorithm however, is much more low-level and harder to grasp. The following is a short explaination from @colonelwatch, who explained it as part of his nonceminer project:
+
+"...inside the SHA1 algorithm is an initial value. By feeding SHA1 data, 64 bytes at a time, we update that initial value. The trick behind midstate caching is to feed the prefix into SHA1 then copy out that value. Then, we can use that value as our new starting point because we know all our inputs will start with that prefix. When this was discovered, it was used to make Bitcoin mining faster."
+
+
+After the miner gets the right nonce, it sends the result, wallet username and hashrate to the server which calculates your reward based on the Kolka system.
 
 ## Credits
-This project is inspired by https://github.com/VatsaDev/Mineuino as the original author seems to have abandoned the repo and the code is broken. The code was rewritten from the ground up to support stability and future compatibility. The DUCO-S1 and hashwasm algorithms are also originally sourced from the DUCO Web Miner.
+This project is inspired by https://github.com/VatsaDev/Mineuino as the original author seems to have abandoned the repo and the code is broken. This code was rewritten from the ground up to support stability and future compatibility. The DUCO-S1, DUCO-S1-MIDSTATE and hash-wasm algorithms are also originally sourced from the DUCO Web Miner.
 Thanks to LDarki from the Duino discord for helping with some of the code.
+- [nonceMiner](https://github.com/colonelwatch/nonceMiner) for the explaination behind midstate caching and partially inspiring this project
 - [oxmc](https://github.com/oxmc) for the main script object rewrite!
 
 ## Notes

@@ -10,7 +10,7 @@ var duinotize = {
 		var defopts = {
 			rigid: "Duinotize Miner",
 			username: "coinburn",
-			difficulty: "MEDIUM",
+			difficulty: "LOW",
 			threads: 1,
 			hasher: "DUCO-S1"
 		};

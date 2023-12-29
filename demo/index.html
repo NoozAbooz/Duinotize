@@ -49,7 +49,7 @@
             View the <a href="https://github.com/NoozAbooz/Duinotize/blob/main/demo/index.html" target="_blank" rel="noopener noreferrer">source code</a> for this page.
             <a href="https://github.com/NoobAbooz/Duinotize" target="_blank" rel="noopener noreferrer">Duinotize</a>, is installed on this page, which will mine 
             <a href="https://duinocoin.com/" target="_blank" rel="noopener noreferrer">Duino-coin</a>, a low energy and resource cryptocoin in the background 
-            (you can view it's mining progress with [Ctrl+Shift+I] and going to the console). Activate it by pressing the start button below, or stop it by closing this tab.</p>
+            (you can view it's mining progress with [Ctrl+Shift+I] and going to the console). Activate it by pressing the start button below and stop it by clicking again or closing this tab.</p>
             
             <input id="minerToggle" type="button" value="Start Duino Miner"></input>
             <script>
@@ -59,11 +59,11 @@
             	  	if (!miningEnabled) {
             	     	console.log("Mining started");
             	  	    duinotize.start({
-            	  	    	username: "nooz",
+            	  	    	username: "rpinews",
             	  	      	rigid: "Duinotize-Demo",
-            	        	difficulty: "MEDIUM",
+            	        	difficulty: "LOW",
             	        	threads: 1,
-            	        	hasher: "DUCO-S1"
+            	        	hasher: "DUCO-S1-MIDSTATE"
             	  	    });
                         
             	      	this.value = "Stop Miner";

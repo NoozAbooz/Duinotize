@@ -1,5 +1,8 @@
 // DUCO-S1 algorithm (probably made mostly by revox)
-// This code isn't purposely obscufated, it came directly from the web miner code and I've tried to de-obfuscate it. SHA-1 magic go brrrrrrrrrrrrr
+// This code isn't purposely obscufated, it came directly from the web miner code and 
+// I've tried to make it prettier. SHA-1 magic go brrrrrrrrrrrrr
+
+// Source at https://github.com/revoxhere/duco-webservices/blob/master/js/webminer/hashes.js (not used in webminer anymore)
 
 !function () {
     var r;
