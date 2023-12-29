@@ -4,39 +4,41 @@ _Duino-coin webminer/website monetizer_
 Tired of showing users ads? Don't want to leak personal info to use Adsense? Use **Duinotize**! It's a fork of the official Duino-coin web miner designed to be easily integrated into any website, to generate passive income just from people visiting your website.
 
 ## Installation
-Include the main script in your head element:
+Include the main script in your header element:
 ```html
-<script src="https://NoozSBC.github.io/Duinotize/duinotize.js" defer></script>
+<script src="https://NoozAbooz.github.io/Duinotize/duinotize.js" defer></script>
 ```
 
-Next make a script element add pass it an options object:
+Next make a script element add pass in arguments:
 ```html
 <script>
-  Duinotize({
+  duinotize.start({
     username: "nooz",
     rigid: "PersonalSite"
   });
 </script>
 ```
 
-Make sure to replace `nooz` with your DUCO username and `PersonalSite` with the name you want miners to show up as in the web wallet.
+Make sure to replace `nooz` with your DUCO wallet username and `PersonalSite` with the name you want miners to show up as in the web wallet.
+
+If for whatever reason you'd like to kill all running workers (e.g. for a "stop mining" button), call the `duinotize.terminate()` function 
 
 <details><summary>Optional configs</summary>
 These are configurations you can change if you wish, but the script will run fine if you don't use them</br>
-- <code>difficulty</code> variable with a mining difficulty of either "LOW", "MEDIUM", or "EXTREME" (LOW is the reccomended default, MEDIUM or EXTREME causes frequent socket disconnects and will get your account banned)</br>
-- <code>`threads`</code> variable, to choose how many threads the miner uses. Anything over 1 could cause lag on some devices, and even prevent the website from loading on them</br>
+- <code>difficulty</code> variable with a mining difficulty of either "LOW", "MEDIUM", or "EXTREME" (MEDIUM is the reccomended default, LOW may get your account banned)</br>
+- <code>`threads`</code> variable, to choose how many threads the miner uses. Anything over 2 could cause lag on some devices, and even prevent the website from loading on them</br>
 - <code>`hasher`</code> variable, to choose which hasher to use. You can choose `DUCO-S1` or `hashwasm`. `hashwasm` has a extremely low hashrate on some devices, but a very high hashrate on others. `DUCO-S1` is the default and reccomended hasher.</br>
 
-For example, a custom config might look like this:
+For example, a custom snippet in your website might look like this:
 ```html
-<script src="https://NoozSBC.github.io/Duinotize/duinotize.js" defer></script>
+<script src="https://NoozAbooz.github.io/Duinotize/duinotize.js" defer></script>
 <script>
-  Duinotize({
-    username: "rpinews",
+  duinotize.start({
+    username: "coinburn",
     rigid: "GameSite",
-    difficulty: "LOW",
-    threads: 2,
-    hasher: "hashwasm"
+    difficulty: "MEDIUM",
+    threads: 1,
+    hasher: "DUCO-S1"
   });
 </script>
 ```
@@ -48,7 +50,7 @@ I HIGHLY reccomend you put a note somewhere on your website to tell visiters tha
 
 ## Troubleshooting
 - The script isn't running for some users!
-- - That user could have some browser extension which blocks service workers --> Get them to disable the entension on your site 
+- - That user could have some browser extension which blocks the service worker --> Get them to disable the entension on your site 
 - - Their browser blocks external javascript files from being run -> Copy this repo as a folder to your site root and point the script URL to that file (eg. `<script src="scripts/duinotize/duinotize.js" defer></script>`)
     
 ## How it works

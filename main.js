@@ -1,9 +1,8 @@
-// Load in hashers
-
+// Load hashing algorithms
 importScripts("https://noozabooz.github.io/Duinotize/hashers/hash-duco-s1.js")
-importScripts("https://noozabooz.github.io/Duinotize/hashers/hash-wasm.js")
+importScripts("https://cdn.jsdelivr.net/npm/hash-wasm@latest/dist/sha1.umd.min.js")
 
-// Custom functions to get current time and make hashrate prettier
+// Custom current time for logging purposes
 function getTime() {
     let date = new Date();
     let h = date.getHours();
@@ -19,6 +18,7 @@ function getTime() {
     return `${h}:${m}:${s}${AmOrPm}`;
 }
 
+// Make hashrate prettier
 function formatHash(bytes, decimals = 2) {
     if (bytes === 0) return 'No hashrate';
 
@@ -31,7 +31,7 @@ function formatHash(bytes, decimals = 2) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-// When message is received, read it and parse variables from it
+// When message is received from duinotize.js, read it and parse variables from it
 onmessage = function(event) {
     if (event.data.startsWith("Start")) {
         let getData = event.data.split(",");
@@ -41,43 +41,58 @@ onmessage = function(event) {
         let rigid = getData[2];
         let wallet_id = getData[3];
         let difficulty = getData[4];
-        let workerVer = getData[5];
+        let workerID = getData[5];
         let hasher = getData[6];
         
         if (rigid === "") {
-            rigid = Duinotize + wallet_id;
+            rigid = "Duinotize";
         }
 
         rigid = rigid + wallet_id;
         
         function connect() {
-            var socket = new WebSocket("wss://magi.duinocoin.com:14808");
+            // fetch('https://server.duinocoin.com/getPool')
+            // .then(response => response.json())
+            // .then(data => {
+            //     ip = data.ip;
+            //     port = data.port;
+            // })
+
+            try {
+                var socket = new WebSocket(`wss://${ip}:${port}`); // this is currently broken because of CORS on the duinotize server
+            } 
+            catch (error) {
+                console.error('Connecting to fallback server because pool could not be fetched (likley a CORS issue?): ' + error);
+                console.error(error);
+                var socket = new WebSocket("wss://magi.duinocoin.com:14808");
+            }
+
             socket.onopen = function(event) {
-                console.log('%c' + `${getTime()} | ` + "CPU" + workerVer + ": Connected to server as: '" + rigid + "'", 'color:green');
+                console.log('%c' + `${getTime()} | ` + "CPU" + workerID + ": Connected to server as: '" + rigid + "'", 'color:green');
                 socket.send("JOB," + username + "," + difficulty);
             }
 
             socket.onmessage = async function(event) {
                 var serverMessage = event.data;
                 if (serverMessage.includes("3.")) {
-                console.log(`${getTime()} | ` + "CPU" + workerVer + ": Debug info: " + username + " | " + wallet_id + " | " + difficulty + " | " + hasher + " | " + serverMessage);
+                console.log(`${getTime()} | ` + "CPU" + workerID + ": Debug info: " + username + " | " + wallet_id + " | " + difficulty + " | " + hasher + " | " + serverMessage);
                 } else if (serverMessage.includes("GOOD")) {
-                    console.log(`%c` + `${getTime()} | ` + "CPU" + workerVer + ": Share accepted: " + result, 'color:#B1FFCA');
+                    console.log(`%c` + `${getTime()} | ` + "CPU" + workerID + ": Share accepted: " + result, 'color:#B1FFCA');
+                    console.log("----------------------------------------");
                     socket.send("JOB," + username + "," + difficulty);
                 } else if (serverMessage.includes("BAD")) {
-                    console.log('%c' + `${getTime()} | ` + "CPU" + workerVer + ": Share rejected: " + result, 'color:red');
+                    console.log('%c' + `${getTime()} | ` + "CPU" + workerID + ": Share rejected: " + result, 'color:red');
                     socket.send("JOB," + username + "," + difficulty);
                 } else if (serverMessage.includes("This user doesn't exist")) {
-                    console.log(`${getTime()} | ` + "CPU" + workerVer + ": User not found!");
+                    console.log(`${getTime()} | ` + "CPU" + workerID + ": User not found!");
                 } else if (serverMessage.includes("Too many workers")) {
-                    console.log(`${getTime()} | ` + "CPU" + workerVer + ": Too many workers");
+                    console.log(`${getTime()} | ` + "CPU" + workerID + ": Too many workers");
                 } else if (serverMessage.length >= 40) {
-                    console.log(`%c` + `${getTime()} | ` + "CPU" + workerVer + ": Job received: " + serverMessage.replace(/(\r\n|\n|\r)/gm, ""), 'color:yellow');
+                    console.log(`%c` + `${getTime()} | ` + "CPU" + workerID + ": Job received: " + serverMessage.replace(/(\r\n|\n|\r)/gm, ""), 'color:yellow');
                     job = serverMessage.split(",");
                     let miningDifficulty = job[2];
                     startingTime = performance.now();
                     for (result = 0; result < 100 * miningDifficulty + 1; result++) {
-
                         if (hasher == "DUCO-S1") {
                             hashresult = new duco.SHA1().hex(job[0] + result);
                         } else if (hasher == "hashwasm") {
@@ -88,23 +103,22 @@ onmessage = function(event) {
                             endingTime = performance.now();
                             timeDifference = (endingTime - startingTime) / 1000;
                             hashrate = (result / timeDifference).toFixed(2);
-                            console.log('%c' + `${getTime()} | ` + "CPU" + workerVer + ": Nonce found: " + result + " Time: " + Math.round(timeDifference) + "s Hashrate: " + formatHash(hashrate), 'color:#76E7FF');
-                            socket.send(result + "," + hashrate + ",Duinotize v1.3," + rigid + ",," + wallet_id);
-                            console.log("----------------------------------------");
+                            console.log('%c' + `${getTime()} | ` + "CPU" + workerID + ": Nonce found: " + result + " Time: " + Math.round(timeDifference) + "s Hashrate: " + formatHash(hashrate), 'color:#76E7FF');
+                            socket.send(result + "," + hashrate + ",Duinotize Web v1.4," + rigid + ",," + wallet_id);
                         }
                     }
                 } else {
-                    console.log(`${getTime()} | ` + "CPU" + workerVer + ": " + serverMessage);
+                    console.log(`${getTime()} | ` + "CPU" + workerID + ": " + serverMessage);
                     console.log("Invalid message received from server.");
                 }
             }
             socket.onerror = function(event) {
-                console.error("CPU" + workerVer + "WebSocket error observed, trying to reconnect: ", event);
+                console.error("CPU" + workerID + "WebSocket error observed, trying to reconnect: ", event);
                 socket.close(1000, "Reason: Error occured in WebWorker.");
                 console.log("----------------------------------------");
             }
             socket.onclose = function(event) {
-                console.warn("CPU" + workerVer + ": WebSocket close observed, trying to reconnect: ", event);
+                console.warn("CPU" + workerID + ": WebSocket close observed, trying to reconnect: ", event);
                 setTimeout(function() {
                     connect();
                 }, 15000);
