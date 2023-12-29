@@ -1,7 +1,7 @@
 // Load hashing algorithms
-importScripts("../hashers/hash-duco-s1.js")
-importScripts("../hashers/hash-duco-midstate.js")
-importScripts("../hashers/hash-wasm.js")
+importScripts("hashers/hash-duco-s1.js")
+importScripts("hashers/hash-duco-midstate.js")
+importScripts("hashers/hash-wasm.js")
 
 // Custom current time for logging purposes
 function getTime() {
