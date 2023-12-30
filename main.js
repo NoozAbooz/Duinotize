@@ -61,11 +61,10 @@ onmessage = function(event) {
             // })
 
             try {
-                var socket = new WebSocket(`wss://${ip}:${port}`); // this is currently broken because of CORS on the duinotize server
+                var socket = new WebSocket(`wss://magi.duinocoin.com:14808`);
             } 
             catch (error) {
-                console.error('Connecting to fallback server because pool could not be fetched (likley a CORS issue?): ' + error);
-                var socket = new WebSocket("wss://magi.duinocoin.com:14808");
+                console.error('DUCO server is down?: ' + error);
             }
 
             socket.onopen = function(event) {
