@@ -74,7 +74,7 @@ onmessage = function(event) {
 
             socket.onmessage = async function(event) {
                 var serverMessage = event.data;
-                if (serverMessage.includes("3.")) {
+                if (serverMessage.includes("4.")) {
                 console.log(`${getTime()} | ` + "CPU" + workerID + ": Debug info: " + username + " | " + "ID:" + wallet_id + " | " + difficulty + " | " + hasher + " | " + serverMessage);
                 } else if (serverMessage.includes("GOOD")) {
                     console.log(`%c` + `${getTime()} | ` + "CPU" + workerID + ": Share accepted: " + result, 'color:#B1FFCA');

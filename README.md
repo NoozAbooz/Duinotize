@@ -25,7 +25,7 @@ If for whatever reason you'd like to kill all running workers (e.g. for a "stop 
 
 <details><summary>Optional configs</summary>
 These are configurations you can change if you wish, but the script will run fine if you don't use them</br>
-- <code>difficulty</code> variable with a mining difficulty of either "LOW", "MEDIUM", or "EXTREME" (LOW is the reccomended default)</br>
+- <code>difficulty</code> variable with a mining difficulty of either "LOW", "MEDIUM", or "NET" (LOW is the reccomended default)</br>
 - <code>`threads`</code> variable, to choose how many threads the miner uses. Anything over 2 could cause lag on some devices, and even prevent the website from loading on them</br>
 - <code>`hasher`</code> variable, to choose which hasher to use. You can choose `DUCO-S1-MIDSTATE`, `DUCO-S1`, or `hash-wasm`. `hash-wasm` has a extremely low hashrate and is not reccomended. `DUCO-S1-MIDSTATE` is the default and reccomended hasher, with double the speeds of the original `DUCO-S1` algorithm.</br>
 
