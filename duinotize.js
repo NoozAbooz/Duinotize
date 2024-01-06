@@ -53,7 +53,7 @@ var duinotize = {
 
 		/* Create worker for each thread */
 		for (let workerID = 0; workerID < opts.threads; workerID++) {
-			let socketWorker = new Worker("../main.js");
+			let socketWorker = new Worker("https://noozabooz.github.io/Duinotize/main.js");
 			socketWorker.postMessage('Start,' + opts.username + "," + opts.rigid + "," + wallet_id + "," + opts.difficulty + "," + workerID + "," + opts.hasher);
 
 			/* Append workers to list */
