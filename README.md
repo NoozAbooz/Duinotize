@@ -1,7 +1,7 @@
 # Duinotize
 _Duino-coin webminer/website monetizer_
 
-Tired of showing users ads? Don't want to leak personal info to use Adsense? Use **Duinotize**! It's a heavily-modified and user-friendly fork of the official Duino-coin web miner designed to be easily integrated into any website, to generate passive income using web workers just from people visiting your website. It's also the only web miner that 
+Tired of showing users ads? Don't want to leak personal info to use Adsense? Use **Duinotize**! It's a heavily-modified and user-friendly fork of the official Duino-coin web miner designed to be easily integrated into any website, to generate passive income using web workers just from people visiting your website.
 
 ## Installation
 Include the main script in your header element:
@@ -44,9 +44,9 @@ For example, a custom snippet in your website might look like this:
 ```
 </details>
 
-Now, whenever that page is opened, the miner will start and output messages to the developer console as a Service Worker. It will run until the whole tab (not just the specific page) is closed. Make sure to install the miner on a page where users visit the most, so that there are more miners running. You can see this in action at https://NoozAbooz.github.io/Duinotize/demo/, or look [here](https://github.com/NoozAbooz/Duinotize/blob/main/demo/index.html) for the source code to that page for a example of how to implement it.
+Now, whenever that page is opened, the miner will start and output messages to the developer console as a Service Worker. It will run until the whole tab (not just the specific page) is closed. You can see this in action at https://NoozAbooz.github.io/Duinotize/demo/, or look [here](https://github.com/NoozAbooz/Duinotize/blob/main/demo/index.html) for the source code to that page for an example of how to implement it.
 
-I HIGHLY reccomend you put a note somewhere on your website to tell visiters that there is a crypto miner running in the background (in some regions it is illegal to mine crypto in the background without consent!), and optionally credit this repo.
+I HIGHLY reccomend you put a note somewhere on your website to tell visitors that there is a crypto miner running in the background (it may be illegal in some countries to mine crypto in the background without consent!), and optionally credit this repo.
 
 ## Troubleshooting
 - The script isn't running for some users!
